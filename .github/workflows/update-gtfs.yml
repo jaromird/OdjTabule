@@ -1,10 +1,9 @@
-name: Weekly GTFS update
+name: Weekly GTFS Update
 
 on:
   schedule:
-    # každou neděli ve 13:00 SEČ (11:00 UTC)
-    - cron: '0 11 * * 0'
-  workflow_dispatch:  # možnost spustit ručně
+    - cron: '0 13 * * 0' # každou neděli ve 13:00
+  workflow_dispatch: # možnost spustit ručně
 
 jobs:
   update-gtfs:
@@ -14,17 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install unzip
-        run: sudo apt-get install -y unzip
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
 
       - name: Download GTFS zip
         run: |
-          curl -L -o gtfs.zip https://kordis-jmk.cz/gtfs/gtfs.zip
+          curl -L https://kordis-jmk.cz/gtfs/gtfs.zip -o gtfs.zip
 
       - name: Unzip GTFS
         run: |
@@ -32,13 +28,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
           git add data/*.txt
           git commit -m "Weekly GTFS update" || echo "No changes to commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT_TOKEN }}
           branch: master
