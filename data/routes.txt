@@ -1,6 +1,5 @@
 ﻿route_id,agency_id,route_short_name,route_long_name,route_type,route_color,route_text_color
 L100D99,99,LOĎ,"Bystrc - Rokle - Veverská Bítýška",4,00224B,FFFFFF
-L101D99,99,x303,"NÁHRADNÍ DOPRAVA: Bystrc, přístav - Kozí horka, přístav",4,,
 L104D99,99,104,"Brno - Pohořelice - Vlasatice - Hrušovany nad Jevišovkou - Hevlín - Laa an der Thaya",3,00E68C,
 L105D99,99,105,"Brno - Modřice - Pohořelice - Pasohlávky - Dolní Dunajovice - Mikulov",3,00E68C,
 L106D99,99,106,"Brno - Slavkov u Brna - Žarošice - Dražůvky - Kyjov",3,00E68C,
@@ -10,6 +9,7 @@ L109D99,99,109,"Brno - Telnice - Klobouky u Brna - Čejč - Mutěnice - Hodonín
 L10D99,99,10,"Stránská skála - Bystrc, Ečerova",0,A05A2C,FFFFFF
 L110D99,99,S5,"Kunovice - Uherské Hradiště - Staré Město u Uherského Hradiště",2,800000,FFFFFF
 L111D99,99,xR12,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Vyškov na Moravě - Nezamyslice",3,7FFFAA,
+L118D99,99,xS41,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Střelice",3,7FFFAA,
 L120D99,99,S2,"Vyškov - Holubice - Křenovice - Sokolnice - Brno - Blansko - Skalice nad Svitavou - Letovice",2,800000,FFFFFF
 L121D99,99,S21,"Boskovice - Skalice nad Svitavou",2,800000,FFFFFF
 L122D99,99,S22,"Letovice - Březová nad Svitavou",2,800000,FFFFFF
@@ -132,6 +132,7 @@ L35D99,99,35,"Masarykova čtvrť, Barvičova - Mendlovo náměstí",800,008033,F
 L36D99,99,36,"Komín, sídliště - Česká",800,008033,FFFFFF
 L370D99,99,370,"Bystřice nad Pernštejnem: Domanín - Domanínek - Masarykovo nám. - Gymnázium - Železniční stanice",3,2C89C8,FFFFFF
 L37D99,99,37,"Mendlovo náměstí - Osová",800,008033,FFFFFF
+L381D99,99,x1,"Vozovna Komín - Říčanská - Vozovna Komín",3,D40000,FFFFFF
 L384D99,99,x4,"NC Královo Pole - Náměstí Míru - Česká",3,EE7E1E,FFFFFF
 L38D99,99,38,"Masarykova čtvrť, Preslova - Česká",800,008033,FFFFFF
 L39D99,99,39,"Masarykova čtvrť, Barvičova - Česká",800,008033,FFFFFF
@@ -162,8 +163,6 @@ L445D99,99,445,"Moravský Krumlov - Petrovice - Miroslavské Knínice - Miroslav
 L446D99,99,446,"Moravský Krumlov - Loděnice",3,7FFFAA,
 L44D99,99,44,"ÚAN Zvonařka - ÚAN Zvonařka",3,2C82C8,FFFFFF
 L450D99,99,450,"Miroslav - Olbramovice - Branišovice - Jiřice u Miroslavi",3,7FFFAA,
-L465D99,99,x25,"Nemocnice Bohunice - Mendlovo náměstí",3,008033,FFFFFF
-L466D99,99,x26,"Kamenný vrch - Mendlovo náměstí",3,008033,FFFFFF
 L46D99,99,46,"Lesná, Haškova - Zemědělská",3,2C82C8,FFFFFF
 L47D99,99,47,"Staré Černovice - Hlavní nádraží",3,2C82C8,FFFFFF
 L48D99,99,48,"Brno - Kobylnice - Prace",3,2C82C8,FFFFFF
@@ -248,7 +247,6 @@ L672D99,99,672,"Kyjov: Bohuslavice - Boršov - gymnázium - AN - nemocnice",3,2C
 L673D99,99,673,"Kyjov: Nemocnice - AN - Újezd - poliklinika - AN - nemocnice",3,2C89C8,FFFFFF
 L67D99,99,67,"Jundrov - Avion Shopping Park",3,2C82C8,FFFFFF
 L68D99,99,68,"Šumavská - Myslivna",3,2C82C8,FFFFFF
-L690D99,99,x90,"Hluboká - Hlavní nádraží",3,000000,E1CB31
 L69D99,99,69,"Bosonohy - Bohunice, Ukrajinská",3,2C82C8,FFFFFF
 L6D99,99,6,"Královo Pole, nádraží - Starý Lískovec, smyčka",0,0777C1,FFFFFF
 L701D99,99,701,"Brno - Mokrá-Horákov - Hostěnice - Pozořice",3,7FFFAA,
@@ -313,6 +311,7 @@ L84D99,99,84,"Židenice, Stará osada - Židenice, Stará osada",3,2C82C8,FFFFFF
 L85D99,99,š85,"Tuřany, smyčka - Holásky",3,2C82C8,FFFFFF
 L86D99,99,š86,"Hlavní nádraží - Loosova",3,2C82C8,FFFFFF
 L88D99,99,š88,"Vejrostova - ZŠ Laštůvkova/ ZŠ Jana Babáka",3,2C82C8,FFFFFF
+L890D99,99,X,"Babická - Tomkovo náměstí",3,2C89C8,FFFFFF
 L89D99,99,N89,"Letiště Tuřany - Kníničky, U Luhu",3,000000,E1CB31
 L8D99,99,8,"Líšeň, Mifkova - Nemocnice Bohunice",0,E1CB31,
 L901D99,99,901,"Hodonín: Autobusové nádraží - Bažantnice - Železniční stanice - Nemocnice - Hřbitov",3,2C89C8,FFFFFF
