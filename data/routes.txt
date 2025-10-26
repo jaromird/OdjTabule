@@ -132,9 +132,11 @@ L35D99,99,35,"Masarykova čtvrť, Barvičova - Mendlovo náměstí",800,008033,F
 L36D99,99,36,"Komín, sídliště - Česká",800,008033,FFFFFF
 L370D99,99,370,"Bystřice nad Pernštejnem: Domanín - Domanínek - Masarykovo nám. - Gymnázium - Železniční stanice",3,2C89C8,FFFFFF
 L37D99,99,37,"Mendlovo náměstí - Osová",800,008033,FFFFFF
-L381D99,99,x1,"Vozovna Komín - Říčanská - Vozovna Komín",3,D40000,FFFFFF
+L381D99,99,x1,"Řečkovice - nádraží",0,D40000,FFFFFF
 L384D99,99,x4,"NC Královo Pole - Náměstí Míru - Česká",3,EE7E1E,FFFFFF
+L386D99,99,x6,"nádraží - Hlavní nádraží",3,0777C1,FFFFFF
 L38D99,99,38,"Masarykova čtvrť, Preslova - Česká",800,008033,FFFFFF
+L392D99,99,x12,"Česká - Technologický park",3,00CCFF,FFFFFF
 L39D99,99,39,"Masarykova čtvrť, Barvičova - Česká",800,008033,FFFFFF
 L3D99,99,3,"Židenice, Stará osada - Vozovna Komín (- Bystrc, Rakovecká)",0,009E9E,FFFFFF
 L401D99,99,401,"Brno - Říčany - Domašov - Velká Bíteš",3,7FFFAA,
@@ -163,6 +165,8 @@ L445D99,99,445,"Moravský Krumlov - Petrovice - Miroslavské Knínice - Miroslav
 L446D99,99,446,"Moravský Krumlov - Loděnice",3,7FFFAA,
 L44D99,99,44,"ÚAN Zvonařka - ÚAN Zvonařka",3,2C82C8,FFFFFF
 L450D99,99,450,"Miroslav - Olbramovice - Branišovice - Jiřice u Miroslavi",3,7FFFAA,
+L465D99,99,x25,"Nemocnice Bohunice - Mendlovo náměstí",3,008033,FFFFFF
+L466D99,99,x26,"Kamenný vrch - Mendlovo náměstí",3,008033,FFFFFF
 L46D99,99,46,"Lesná, Haškova - Zemědělská",3,2C82C8,FFFFFF
 L47D99,99,47,"Staré Černovice - Hlavní nádraží",3,2C82C8,FFFFFF
 L48D99,99,48,"Brno - Kobylnice - Prace",3,2C82C8,FFFFFF
@@ -247,6 +251,7 @@ L672D99,99,672,"Kyjov: Bohuslavice - Boršov - gymnázium - AN - nemocnice",3,2C
 L673D99,99,673,"Kyjov: Nemocnice - AN - Újezd - poliklinika - AN - nemocnice",3,2C89C8,FFFFFF
 L67D99,99,67,"Jundrov - Avion Shopping Park",3,2C82C8,FFFFFF
 L68D99,99,68,"Šumavská - Myslivna",3,2C82C8,FFFFFF
+L694D99,99,x94,"Modřice, smyčka - Hlavní nádraží",3,000000,E1CB31
 L69D99,99,69,"Bosonohy - Bohunice, Ukrajinská",3,2C82C8,FFFFFF
 L6D99,99,6,"Královo Pole, nádraží - Starý Lískovec, smyčka",0,0777C1,FFFFFF
 L701D99,99,701,"Brno - Mokrá-Horákov - Hostěnice - Pozořice",3,7FFFAA,
@@ -254,6 +259,7 @@ L702D99,99,702,"Brno - Pozořice - Viničné Šumice",3,7FFFAA,
 L70D99,99,70,"Ořešín - Královo Pole, nádraží",3,2C82C8,FFFFFF
 L710D99,99,710,"Šlapanice - Jiříkovice - Blažovice",3,7FFFAA,
 L720D99,99,720,"Holubice - Pozořice",3,7FFFAA,
+L721D99,99,xS21,"NÁHRADNÍ DOPRAVA ZA VLAK S21",3,7FFFAA,
 L72D99,99,72,"Technologický park - Obřany, sídliště",3,2C82C8,FFFFFF
 L730D99,99,730,"Vyškov - Luleč - Nemojany - Tučapy - Komořany - Rousínov",3,7FFFAA,
 L731D99,99,731,"Olšany - Habrovany - Rousínov",3,7FFFAA,
@@ -311,7 +317,6 @@ L84D99,99,84,"Židenice, Stará osada - Židenice, Stará osada",3,2C82C8,FFFFFF
 L85D99,99,š85,"Tuřany, smyčka - Holásky",3,2C82C8,FFFFFF
 L86D99,99,š86,"Hlavní nádraží - Loosova",3,2C82C8,FFFFFF
 L88D99,99,š88,"Vejrostova - ZŠ Laštůvkova/ ZŠ Jana Babáka",3,2C82C8,FFFFFF
-L890D99,99,X,"Babická - Tomkovo náměstí",3,2C89C8,FFFFFF
 L89D99,99,N89,"Letiště Tuřany - Kníničky, U Luhu",3,000000,E1CB31
 L8D99,99,8,"Líšeň, Mifkova - Nemocnice Bohunice",0,E1CB31,
 L901D99,99,901,"Hodonín: Autobusové nádraží - Bažantnice - Železniční stanice - Nemocnice - Hřbitov",3,2C89C8,FFFFFF
