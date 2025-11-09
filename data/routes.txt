@@ -128,6 +128,7 @@ L36D99,99,36,"Komín, sídliště - Česká",800,008033,FFFFFF
 L370D99,99,370,"Bystřice nad Pernštejnem: Domanín - Domanínek - Masarykovo nám. - Gymnázium - Železniční stanice",3,2C89C8,FFFFFF
 L37D99,99,37,"Mendlovo náměstí - Osová",800,008033,FFFFFF
 L384D99,99,x4,"NC Královo Pole - Náměstí Míru - Česká",3,EE7E1E,FFFFFF
+L389D99,99,x9,"NÁHRADNÍ DOPRAVA ZA TRAMVAJ",3,8C4A9A,FFFFFF
 L38D99,99,38,"Masarykova čtvrť, Preslova - Česká",800,008033,FFFFFF
 L39D99,99,39,"Masarykova čtvrť, Barvičova - Česká",800,008033,FFFFFF
 L3D99,99,3,"Židenice, Stará osada - Vozovna Komín (- Bystrc, Rakovecká)",0,009E9E,FFFFFF
@@ -157,8 +158,6 @@ L445D99,99,445,"Moravský Krumlov - Petrovice - Miroslavské Knínice - Miroslav
 L446D99,99,446,"Moravský Krumlov - Loděnice",3,7FFFAA,
 L44D99,99,44,"ÚAN Zvonařka - ÚAN Zvonařka",3,2C82C8,FFFFFF
 L450D99,99,450,"Miroslav - Olbramovice - Branišovice - Jiřice u Miroslavi",3,7FFFAA,
-L465D99,99,x25,"Nemocnice Bohunice - Mendlovo náměstí",3,008033,FFFFFF
-L466D99,99,x26,"Kamenný vrch - Mendlovo náměstí",3,008033,FFFFFF
 L46D99,99,46,"Lesná, Haškova - Zemědělská",3,2C82C8,FFFFFF
 L47D99,99,47,"Staré Černovice - Hlavní nádraží",3,2C82C8,FFFFFF
 L48D99,99,48,"Brno - Kobylnice - Prace",3,2C82C8,FFFFFF
