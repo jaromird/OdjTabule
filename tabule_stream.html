@@ -8,33 +8,42 @@
   header { display:flex; align-items:center; justify-content:space-between; gap:12px; width:95%; margin:0 auto 10px; }
   .clock { font-size: 28px; font-weight: bold; }
   .header-center { text-align:center; flex:1; }
-  /* větší, tučnější a jiný styl pro select */
   .station-select { font-size:18px; padding:8px 12px; font-weight:700; background:#222; color:#fff; border:1px solid #444; border-radius:6px; min-width:360px; }
-  .status-circle { width:18px; height:18px; border-radius:50%; display:inline-block; vertical-align:middle; margin-left:8px; }
-  /* progress skrytý */
+  .status-circle { 
+    width:24px; 
+    height:24px; 
+    border-radius:50%; 
+    display:inline-block; 
+    vertical-align:middle; 
+    margin-left:8px; 
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
   #progressContainer { display:none; width:95%; margin:6px auto; background:#333; height:10px; border-radius:5px; overflow:hidden; }
   #progressBar { height:100%; width:0%; background:#4caf50; transition: width .2s; }
   table { border-collapse: collapse; margin:8px auto; width:95%; }
-  th, td { border:1px solid #666; padding:10px 14px; }
-  /* větší písmo v záhlaví sloupců */
-  th { background:#222; color:#fff; font-size:18px; font-weight:700; }
+  th, td { border:1px solid #666; padding:10px 14px; cursor: pointer; }
+  th { background:#222; color:#fff; font-size:18px; font-weight:700; position: relative; }
+  th:hover { background: #333; }
+  .filter-panel { display: none; position: absolute; top: 100%; left: 0; background: #333; border: 1px solid #666; padding: 10px; z-index: 1000; min-width: 200px; }
+  th:hover .filter-panel { display: block; }
   tr:nth-child(even){ background:#121212; }
-  /* Zarovnání podle požadavku */ 
   th.linka, td.linka { text-align:center; width:100px; }
   th.cil, td.cil { text-align:left; }
   th.do, td.do { text-align:right; width:140px; }
   .small { font-size:12px; color:#aaa; margin-top:6px; text-align:center; width:95%; margin-left:auto; margin-right:auto; }
+  .line-filter-item { margin: 5px 0; }
+  .time-filter-input { width: 60px; padding: 4px; background: #222; color: #fff; border: 1px solid #666; border-radius: 3px; }
 </style>
 </head>
 <body>
 <header>
-  <div class="clock" id="clock">--:--:--</div> <!-- digitální hodiny (změna) -->
+  <div class="clock" id="clock">--:--:--</div>
   <div class="header-center">
-    <select id="stationSelect" class="station-select" aria-label="Vyberte zastávku"></select> <!-- výběr zastávky (změna) -->
+    <select id="stationSelect" class="station-select" aria-label="Vyberte zastávku"></select>
   </div>
-  <div style="text-align:right;">
-    <!-- pouze kolečko s tooltipem -->
-    <span id="statusCircle" class="status-circle" title="Stav: čekám..."></span> <!-- barevné kolečko (změna) -->
+  <div style="text-align:right; display: flex; align-items: center; justify-content: flex-end;">
+    <span id="statusCircle" class="status-circle" style="background: gray;"></span>
   </div>
 </header>
 
@@ -44,9 +53,32 @@
 <table aria-label="Odjezdová tabule">
   <thead>
     <tr>
-      <th class="linka">Linka</th>
+      <th class="linka">
+        Linka
+        <div class="filter-panel">
+          <div><strong>Filtrovat linky:</strong></div>
+          <div class="line-filter-item">
+            <input type="checkbox" id="filterAllLines" checked>
+            <label for="filterAllLines">Zobrazit všechny linky</label>
+          </div>
+          <div id="lineFilterList"></div>
+        </div>
+      </th>
       <th class="cil">Cílová stanice</th>
-      <th class="do">Do odjezdu</th>
+      <th class="do">
+        Do odjezdu
+        <div class="filter-panel">
+          <div><strong>Filtrovat podle času:</strong></div>
+          <div class="line-filter-item">
+            <label for="timeFilter">Zobrazovat odjezdy od (min):</label>
+            <input type="number" id="timeFilter" class="time-filter-input" value="10" min="0" max="1440">
+          </div>
+          <div class="line-filter-item">
+            <label for="formatThreshold">Formátovat čas od (min):</label>
+            <input type="number" id="formatThreshold" class="time-filter-input" value="20" min="1" max="120">
+          </div>
+        </div>
+      </th>
     </tr>
   </thead>
   <tbody id="departures"></tbody>
@@ -54,38 +86,40 @@
 
 <script>
 // === KONSTANTY ===
-const MAX_ROWS = 20;               // počet řádků tabule
-const REFRESH_SECONDS = 7;        // obnovovací frekvence v sekundách
-const FULL_RELOAD_TIME = "03:15";  // kompletní znovunačtení (HH:MM)
+const MAX_ROWS = 20;
+const REFRESH_SECONDS = 7;
+const FULL_RELOAD_TIME = "03:15";
 
-// maximální počet minut, které zobrazíme na tabuli (výchozí)
-const MAX_DISPLAY_MINUTES = 240;   // default 120 minut
+// Výchozí hodnoty pro filtry
+let MIN_DISPLAY_MINUTES = 10;
+let MINUTES_FORMAT_THRESHOLD = 20;
 
-// === změna: highlight barvy podle route_type ===
-// mapování GTFS route_type -> barva (hex)
+// Stáří dat pro indikátor (ve dnech)
+const DATA_AGE_GREEN = 3;
+const DATA_AGE_ORANGE = 8;
+
+// Mapování GTFS route_type -> barva
 const VEHICLE_HIGHLIGHT = {
-  "0": "#2E8B57",   // tramvaj - zelená
-  "1": "#6A5ACD",   // metro - fialová
-  "2": "#8B0000",   // vlak - tmavě červená
-  "3": "#1E90FF",   // autobus - modrá
-  "4": "#0F52BA",   // trajekt - tmavě modrá
-  "5": "#FF8C00",   // lanovka - orandžová
-  "6": "#DA70D6",   // gondola - fialová světlá
-  "7": "#A52A2A",   // funicular - hnědá
+  "0": "#2E8B57",   // tramvaj
+  "1": "#6A5ACD",   // metro
+  "2": "#8B0000",   // vlak
+  "3": "#1E90FF",   // autobus
+  "4": "#0F52BA",   // trajekt
+  "5": "#FF8C00",   // lanovka
+  "6": "#DA70D6",   // gondola
+  "7": "#A52A2A",   // funicular
   "default": null
 };
-// (změna) -- pokud chceš jiné barvy, uprav mapu výše
 
-// Původní SELECTED_STOPS (pouze pro výchozí mapování názvu)
-const INITIAL_SELECTED_STOP_IDS = ["U1256Z3","U1256Z2","U1256Z1","U1256Z6","U1256Z5","U1256Z55","U1256N322"]; // změna
+const INITIAL_SELECTED_STOP_IDS = ["U1256Z3","U1256Z2","U1256Z1","U1256Z6","U1256Z5","U1256Z55","U1256N322"];
 
 // Datové struktury
-let stopTimesByStop = {};      // stop_id -> [ {trip_id, departure_time, minutes} ]
-let stopNames = {};            // stop_id -> stop_name
-let stopsByName = {};          // stop_name -> [stop_id, ...]
-let tripsMap = {};             // trip_id -> { route_id, headsign, service_id }
-let routesMap = {};            // route_id -> { short_name, long_name, route_type }
-let validTripIds = new Set();  // trip_id validní dnes
+let stopTimesByStop = {};
+let stopNames = {};
+let stopsByName = {};
+let tripsMap = {};
+let routesMap = {};
+let validTripIds = new Set();
 let loading = false;
 let isStreaming = false;
 let pendingFullReload = false;
@@ -93,8 +127,13 @@ let stopTimesHeaderIdx = null;
 let stopsDataAll = [];
 let selectedStopName = null;
 let selectedStopIds = [];
+let stopTimesLastModified = null;
 
-// Robustní CSV line parser (respektuje uvozovky a čárky uvnitř polí)
+// Filtry
+let selectedLines = new Set();
+let showAllLines = true;
+
+// Robustní CSV line parser
 function parseCSVLine(line){
   const out = [];
   let cur = "";
@@ -119,7 +158,7 @@ function parseCSVLine(line){
   return out.map(s => s === undefined ? "" : s);
 }
 
-// Helper: načti CSV (používá parseCSVLine) - vrací pole polí (array of arrays)
+// Načtení CSV s kontrolou stáří souboru
 async function loadCSV(path){
   const res = await fetch(path);
   const text = await res.text();
@@ -127,7 +166,34 @@ async function loadCSV(path){
   return lines.map(line => parseCSVLine(line).map(f => f.trim().replace(/^"|"$/g,"")));
 }
 
-// time to minutes (umí i 25:10:00)
+// Aktualizace stavového kolečka podle stáří dat
+function updateStatusCircleByDataAge() {
+  const circle = document.getElementById("statusCircle");
+  
+  if (!stopTimesLastModified) {
+    return;
+  }
+  
+  const now = new Date();
+  const ageInDays = (now - stopTimesLastModified) / (1000 * 60 * 60 * 24);
+  let color, tooltip;
+  
+  if (ageInDays <= DATA_AGE_GREEN) {
+    color = "green";
+    tooltip = `Data jsou aktuální (stáří: ${ageInDays.toFixed(1)} dnů)`;
+  } else if (ageInDays <= DATA_AGE_ORANGE) {
+    color = "orange";
+    tooltip = `Data jsou starší (stáří: ${ageInDays.toFixed(1)} dnů)`;
+  } else {
+    color = "red";
+    tooltip = `Data jsou velmi stará (stáří: ${ageInDays.toFixed(1)} dnů)`;
+  }
+  
+  circle.style.background = color;
+  circle.title = tooltip;
+}
+
+// time to minutes
 function timeToMinutes(t) {
   if(!t) return NaN;
   const parts = t.split(":").map(Number);
@@ -136,16 +202,20 @@ function timeToMinutes(t) {
   return h*60 + m + (s ? s/60 : 0);
 }
 
-// formátování "Do odjezdu": pokud >= 60 minut, ukážeme v hodinách (např. "1h 30m")
-function formatMinutesLeft(mins) {
-  mins = Math.round(mins);
-  if(mins >= 60) {
-    const h = Math.floor(mins/60);
-    const m = mins % 60;
-    if(m === 0) return `${h}h`;
-    return `${h}h ${m}m`;
+// Formátování "Do odjezdu" s prahem pro formátování
+function formatMinutesLeft(mins, departureTime) {
+  if (mins > MINUTES_FORMAT_THRESHOLD) {
+    return departureTime.slice(0, 5);
+  } else {
+    mins = Math.round(mins);
+    if(mins >= 60) {
+      const h = Math.floor(mins/60);
+      const m = mins % 60;
+      if(m === 0) return `${h}h`;
+      return `${h}h ${m}m`;
+    }
+    return `${mins} min`;
   }
-  return `${mins} min`;
 }
 
 // Hodiny
@@ -162,20 +232,12 @@ function startClock() {
   setInterval(tick, 1000);
 }
 
-// Stav načítání - pouze mění kolečko (tooltip), žádný doprovodný text
-function setLoadingState(isLoading, text){
+// Stav načítání
+function setLoadingState(isLoading){
   loading = isLoading;
-  const circle = document.getElementById("statusCircle");
-  if(isLoading){
-    circle.style.background = "orange";
-    circle.title = text || "Načítání dat...";
-  } else {
-    circle.style.background = "green";
-    circle.title = text || "Data načtena";
-  }
 }
 
-// Cookie helpers (uložení vybrané zastávky)
+// Cookie helpers
 function setSelectedStationCookie(name){
   if(!name) return;
   const expires = new Date();
@@ -207,15 +269,14 @@ function populateStationSelect(stopsData){
   names.forEach(n=>{
     const opt = document.createElement("option");
     opt.value = n;
-    opt.textContent = n; // celá hodnota názvu (včetně čárky)
+    opt.textContent = n;
     sel.appendChild(opt);
   });
 
-  // výběr z cookie má přednost
   const cookieName = getSelectedStationFromCookie();
   let defaultName = null;
   if(cookieName && names.includes(cookieName)){
-    defaultName = cookieName; // změna: obnoveno z cookie
+    defaultName = cookieName;
   } else {
     for(const id of INITIAL_SELECTED_STOP_IDS){
       if(stopNames[id]){
@@ -233,8 +294,8 @@ function populateStationSelect(stopsData){
 
   sel.addEventListener("change", e=>{
     setSelectedStopByName(e.target.value);
-    setSelectedStationCookie(e.target.value); // změna: uložíme do cookie
-    updateTable(); // okamžitě přepočítat tabuli
+    setSelectedStationCookie(e.target.value);
+    updateTable();
   });
 }
 
@@ -242,27 +303,100 @@ function populateStationSelect(stopsData){
 function setSelectedStopByName(name){
   selectedStopName = name;
   selectedStopIds = stopsByName[name] ? Array.from(new Set(stopsByName[name])) : [];
-  console.info("Vybraná zastávka:", selectedStopName, "kódy:", selectedStopIds);
 }
 
-// Načtení všech malých souborů (stops, trips, routes, calendar, calendar_dates)
+// Inicializace filtrů
+function initFilters() {
+  const filterAllLines = document.getElementById('filterAllLines');
+  filterAllLines.addEventListener('change', function() {
+    showAllLines = this.checked;
+    if (showAllLines) {
+      selectedLines.clear();
+    }
+    updateTable();
+  });
+
+  const timeFilter = document.getElementById('timeFilter');
+  timeFilter.addEventListener('change', function() {
+    MIN_DISPLAY_MINUTES = parseInt(this.value) || 10;
+    updateTable();
+  });
+
+  const formatThreshold = document.getElementById('formatThreshold');
+  formatThreshold.addEventListener('change', function() {
+    MINUTES_FORMAT_THRESHOLD = parseInt(this.value) || 20;
+    updateTable();
+  });
+}
+
+// Aktualizace seznamu linek pro filtr
+function updateLineFilterList() {
+  const lineFilterList = document.getElementById('lineFilterList');
+  lineFilterList.innerHTML = '';
+  
+  const allLines = new Set();
+  selectedStopIds.forEach(stopId => {
+    const arr = stopTimesByStop[stopId];
+    if (!arr) return;
+    
+    arr.forEach(st => {
+      if (!validTripIds.has(st.trip_id)) return;
+      const trip = tripsMap[st.trip_id];
+      if (!trip) return;
+      const routeInfo = routesMap[trip.route_id] || {};
+      const routeShort = routeInfo.short_name || trip.route_id;
+      allLines.add(routeShort);
+    });
+  });
+  
+  const sortedLines = Array.from(allLines).sort();
+  sortedLines.forEach(line => {
+    const div = document.createElement('div');
+    div.className = 'line-filter-item';
+    
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `lineFilter-${line}`;
+    checkbox.value = line;
+    checkbox.checked = showAllLines || selectedLines.has(line);
+    
+    const label = document.createElement('label');
+    label.htmlFor = `lineFilter-${line}`;
+    label.textContent = line;
+    
+    checkbox.addEventListener('change', function() {
+      if (this.checked) {
+        selectedLines.add(line);
+      } else {
+        selectedLines.delete(line);
+      }
+      document.getElementById('filterAllLines').checked = false;
+      showAllLines = false;
+      updateTable();
+    });
+    
+    div.appendChild(checkbox);
+    div.appendChild(label);
+    lineFilterList.appendChild(div);
+  });
+}
+
+// Načtení všech metadat
 async function loadAllMetadata(){
-  setLoadingState(true,"Načítání metadat...");
+  setLoadingState(true);
   const stopsData = await loadCSV("data/stops.txt");
   const tripsData = await loadCSV("data/trips.txt");
   const routesData = await loadCSV("data/routes.txt");
   const calendarData = await loadCSV("data/calendar.txt");
   const calendarDatesData = await loadCSV("data/calendar_dates.txt");
 
-  populateStationSelect(stopsData); // naplní stopNames a stopsByName (změna)
+  populateStationSelect(stopsData);
 
-  // připravíme mapy (indexy)
   const tripIdx = Object.fromEntries(tripsData[0].map((h,i)=>[h,i]));
   const routeIdx = Object.fromEntries(routesData[0].map((h,i)=>[h,i]));
   const calMapIdx = Object.fromEntries(calendarData[0].map((h,i)=>[h,i]));
   const calDatesIdx = Object.fromEntries(calendarDatesData[0].map((h,i)=>[h,i]));
 
-  // routesMap: uložíme i route_type a long_name (změna)
   routesMap = {};
   routesData.slice(1).forEach(r=>{
     const id = r[routeIdx.route_id];
@@ -273,7 +407,6 @@ async function loadAllMetadata(){
     };
   });
 
-  // tripsMap
   tripsMap = {};
   tripsData.slice(1).forEach(r=>{
     const tripId = r[tripIdx.trip_id];
@@ -284,7 +417,6 @@ async function loadAllMetadata(){
     };
   });
 
-  // valid services podle calendar.txt, aplikovat calendar_dates (1=add,2=remove)
   const today = new Date();
   const todayStr = today.toISOString().slice(0,10).replace(/-/g,"");
   const weekdayKey = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][today.getDay()];
@@ -314,15 +446,22 @@ async function loadAllMetadata(){
     if(validServiceIds.has(t.service_id)) validTripIds.add(tripId);
   });
 
-  setLoadingState(false,"Metadata načtena");
+  setLoadingState(false);
 }
 
-// Stream loader stop_times (indexujeme pro všechny stop_id, kvůli dropdownu)
+// Stream loader stop_times - OPRAVA: nastavuje stopTimesLastModified
 async function loadStopTimesStream(path){
-  setLoadingState(true,"Načítání stop_times (stream)...");
+  setLoadingState(true);
   isStreaming = true;
-  stopTimesByStop = {}; // reset
+  stopTimesByStop = {};
+  
   const res = await fetch(path);
+  
+  // OPRAVA: Získání data modifikace pro stop_times.txt přímo zde
+  const lastModified = res.headers.get('Last-Modified');
+  stopTimesLastModified = lastModified ? new Date(lastModified) : new Date();
+  updateStatusCircleByDataAge();
+  
   const reader = res.body.getReader();
   const decoder = new TextDecoder("utf-8");
   let { value: chunk, done } = await reader.read();
@@ -347,7 +486,7 @@ async function loadStopTimesStream(path){
       if(!headerParsed){
         const headerFields = parseCSVLine(line).map(f=>f.trim().replace(/^"|"$/g,""));
         const idx = Object.fromEntries(headerFields.map((h,i)=>[h,i]));
-        stopTimesHeaderIdx = idx; // uložíme index pro pozdější použití (změna)
+        stopTimesHeaderIdx = idx;
         headerParsed = true;
         continue;
       }
@@ -367,7 +506,7 @@ async function loadStopTimesStream(path){
 
   const pb = document.getElementById("progressBar");
   if(pb) pb.style.width = "100%";
-  setLoadingState(false,"Data načtena");
+  setLoadingState(false);
   isStreaming = false;
 
   if(pendingFullReload){
@@ -376,7 +515,7 @@ async function loadStopTimesStream(path){
   }
 }
 
-// Render tabule: 3 sloupce (Linka, Cílová stanice, Do odjezdu)
+// Render tabule
 function updateTable(){
   const now = new Date();
   const currentMinutesFloat = now.getHours()*60 + now.getMinutes() + now.getSeconds()/60;
@@ -395,7 +534,7 @@ function updateTable(){
       if(!validTripIds.has(st.trip_id)) return;
       const diff = st.minutes - currentMinutesFloat;
       if(diff < 0) return;
-      if(diff > MAX_DISPLAY_MINUTES) return;
+      if(diff < MIN_DISPLAY_MINUTES) return;
 
       const trip = tripsMap[st.trip_id];
       if(!trip) return;
@@ -408,6 +547,10 @@ function updateTable(){
       const routeInfo = routesMap[trip.route_id] || {};
       const routeShort = routeInfo.short_name || trip.route_id;
       const routeType = routeInfo.route_type || "";
+
+      if (!showAllLines && selectedLines.size > 0 && !selectedLines.has(routeShort)) {
+        return;
+      }
 
       departures.push({
         stopId,
@@ -429,11 +572,10 @@ function updateTable(){
     const tr = document.createElement("tr");
     const routeCell = `<td class="linka">${escapeHtml(d.route)}</td>`;
     const headsignCell = `<td class="cil">${escapeHtml(d.headsign)}</td>`;
-    const minutesDisplay = formatMinutesLeft(d.minutesLeft);
+    const minutesDisplay = formatMinutesLeft(d.minutesLeft, d.time);
     const minutesCell = `<td class="do">${escapeHtml(minutesDisplay)}</td>`;
     tr.innerHTML = routeCell + headsignCell + minutesCell;
 
-    // změna: rozhodnutí o podbarvení podle route_type a konstant VEHICLE_HIGHLIGHT
     const rt = String(d.route_type);
     const color = VEHICLE_HIGHLIGHT.hasOwnProperty(rt) ? VEHICLE_HIGHLIGHT[rt] : VEHICLE_HIGHLIGHT["default"];
     if(color){
@@ -446,6 +588,8 @@ function updateTable(){
 
     tbody.appendChild(tr);
   });
+  
+  updateLineFilterList();
 }
 
 // Escapování
@@ -463,17 +607,15 @@ function escapeHtml(s){
 async function fullReload(){
   if(isStreaming){
     pendingFullReload = true;
-    console.info("Full reload odložen, čeká se na dokončení streamu...");
     return;
   }
-  console.info("Provádím kompletní reload dat...");
-  setLoadingState(true,"Full reload...");
+  setLoadingState(true);
   stopTimesByStop = {};
   validTripIds = new Set();
   tripsMap = {};
   routesMap = {};
   await loadAllAndStream();
-  setLoadingState(false,"Full reload dokončen");
+  setLoadingState(false);
 }
 
 // load metadata + stream
@@ -506,13 +648,13 @@ function startPeriodicUpdate(){
 // Inicializace
 (async function init(){
   startClock();
-  setLoadingState(true,"Inicializuji...");
+  initFilters();
+  setLoadingState(true);
   await loadAllAndStream();
-  setLoadingState(false,"Data připravena");
+  setLoadingState(false);
   startPeriodicUpdate();
   startFullReloadWatcher();
 })();
-
 </script>
 </body>
 </html>
