@@ -158,6 +158,15 @@ function parseCSVLine(line){
   return out.map(s => s === undefined ? "" : s);
 }
 
+// Formánování času HH:MM
+function formatTimeHHMM(t) {
+  if (!t) return "";
+  const parts = t.split(":");
+  const h = parts[0].padStart(2,'0');
+  const m = parts[1].padStart(2,'0');
+  return `${h}:${m}`;
+}
+
 // Načtení CSV s kontrolou stáří souboru
 async function loadCSV(path){
   const res = await fetch(path);
@@ -205,7 +214,7 @@ function timeToMinutes(t) {
 // Formátování "Do odjezdu" s prahem pro formátování
 function formatMinutesLeft(mins, departureTime) {
   if (mins > MINUTES_FORMAT_THRESHOLD) {
-    return departureTime.slice(0, 5);
+    return formatTimeHHMM(departureTime);
   } else {
     mins = Math.round(mins);
     if(mins >= 60) {
@@ -318,7 +327,8 @@ function initFilters() {
 
   const timeFilter = document.getElementById('timeFilter');
   timeFilter.addEventListener('change', function() {
-    MIN_DISPLAY_MINUTES = parseInt(this.value) || 10;
+    let val = parseInt(this.value) ;
+    MIN_DISPLAY_MINUTES = (val === 0) ? 0 : val; // oprava pro 0 = 10 min
     updateTable();
   });
 
