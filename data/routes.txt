@@ -34,7 +34,6 @@ L142D99,99,S42,"Náměšť nad Oslavou - Rapotice - Zastávka",2,800000,FFFFFF
 L144D99,99,R12,"Brno - Vyškov - Nezamyslice",2,800000,FFFFFF
 L145D99,99,R54,"Náměšť nad Oslavou - Brno",2,800000,FFFFFF
 L146D99,99,S6,"Brno - Šlapanice - Slavkov u Brna - Bučovice - Kyjov - Veselí nad Moravou - Uherské Hradiště - Staré Město u U. H.",2,800000,FFFFFF
-L147D99,99,R8,"Brno - Vyškov na Moravě",2,800000,E1CB31
 L148D99,99,S61,"Bzenec - Moravský Písek",2,800000,FFFFFF
 L149D99,99,S91,"Myjava - Javorník nad Veličkou - Velká nad Veličkou - Veselí nad Moravou - Strážnice - Hodonín",2,800000,FFFFFF
 L14D99,99,H4,"Komenského náměstí - Nové sady, smyčka",0,CC9408,FFFFFF
@@ -56,7 +55,6 @@ L171D99,99,xS2,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Blansko",3,7FFFAA,
 L174D99,99,174,"Mikulov - Březí - Novosedly - Drnholec - Hrušovany nad Jevišovkou",3,7FFFAA,
 L175D99,99,xS3,"NÁHRADNÍ DOPRAVA ZA VLAK Hrušovany u Brna - Žabčice - Vranovice",3,7FFFAA,
 L179D99,99,xR8,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Vyškov na Moravě",3,7FFFAA,
-L181D99,99,P1,"Lipová - Hlavní nádraží (- Malinovského náměstí)",0,D40000,FFFFFF
 L1D99,99,1,"Řečkovice - Pisárky",0,D40000,FFFFFF
 L201D99,99,201,"Brno - Ochoz u Brna - Křtiny - Jedovnice",3,7FFFAA,
 L210D99,99,210,"Bílovice nad Svitavou - Babice nad Svitavou - Ochoz u Brna - Hostěnice",3,7FFFAA,
@@ -160,8 +158,6 @@ L445D99,99,445,"Moravský Krumlov - Petrovice - Miroslavské Knínice - Miroslav
 L446D99,99,446,"Moravský Krumlov - Loděnice",3,7FFFAA,
 L44D99,99,44,"ÚAN Zvonařka - ÚAN Zvonařka",3,2C82C8,FFFFFF
 L450D99,99,450,"Miroslav - Olbramovice - Branišovice - Jiřice u Miroslavi",3,7FFFAA,
-L465D99,99,x25,"Nemocnice Bohunice - Mendlovo náměstí",3,008033,FFFFFF
-L466D99,99,x26,"Kamenný vrch - Mendlovo náměstí",3,008033,FFFFFF
 L46D99,99,46,"Lesná, Haškova - Zemědělská",3,2C82C8,FFFFFF
 L47D99,99,47,"Staré Černovice - Hlavní nádraží",3,2C82C8,FFFFFF
 L48D99,99,48,"Brno - Kobylnice - Prace",3,2C82C8,FFFFFF
