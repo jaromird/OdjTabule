@@ -50,7 +50,6 @@ L164D99,99,164,"Pohořelice - Loděnice - Olbramovice - Moravský Krumlov",3,7FF
 L165D99,99,165,"Hustopeče - Vranovice - Pohořelice",3,7FFFAA,
 L166D99,99,166,"Vyškov - Bohdalice-Pavlovice - Hvězdlice - Nemochovice - Brankovice",3,7FFFAA,
 L167D99,99,167,"Blansko - Jedovnice - Senetářov - Ruprechtov - Vyškov",3,7FFFAA,
-L171D99,99,xS2,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Blansko",3,7FFFAA,
 L174D99,99,174,"Mikulov - Březí - Novosedly - Drnholec - Hrušovany nad Jevišovkou",3,7FFFAA,
 L175D99,99,xS3,"NÁHRADNÍ DOPRAVA ZA VLAK Hrušovany u Brna - Žabčice - Vranovice",3,7FFFAA,
 L179D99,99,xR8,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Vyškov na Moravě",3,7FFFAA,
@@ -107,7 +106,7 @@ L30D99,99,30,"Černého - Klarisky",800,008033,FFFFFF
 L311D99,99,311,"Tišnov - Drásov - Kuřim",3,7FFFAA,
 L312D99,99,312,"Tišnov - Veverská Bítýška - Kuřim",3,7FFFAA,
 L313D99,99,313,"Lysice - Býkovice - Brťov-Jeneč - Lipůvka - Kuřim",3,7FFFAA,
-L314D99,99,314,"Bystřice nad Pernštejnem - Rožná - Nedvědice - Tišnov - Kuřim",3,7FFFAA,
+L314D99,99,314,"Tišnov - Kuřim",3,7FFFAA,
 L31D99,99,31,"Hlavní nádraží - Šlapanice, Kalvodova",800,008033,FFFFFF
 L320D99,99,320,"Sentice - Čebín - Drásov - Malhostovice - Lipůvka",3,7FFFAA,
 L321D99,99,321,"Sentice - Čebín - Drásov - Skalička",3,7FFFAA,
