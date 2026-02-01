@@ -7,7 +7,6 @@ L108D99,99,108,"Brno - Modřice - Pohořelice - Lechovice - Znojmo",3,00E68C,
 L109D99,99,109,"Brno - Telnice - Klobouky u Brna - Čejč - Mutěnice - Hodonín",3,00E68C,
 L10D99,99,10,"Stránská skála - Bystrc, Ečerova",0,A05A2C,FFFFFF
 L110D99,99,S5,"Kunovice - Uherské Hradiště - Staré Město u Uherského Hradiště",2,800000,FFFFFF
-L111D99,99,xR12,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Vyškov na Moravě - Nezamyslice",3,7FFFAA,
 L114D99,99,xS8,"NÁHRADNÍ DOPRAVA ZA VLAKBožice - Znojmo",3,7FFFAA,
 L116D99,99,xS91,"NÁHRADNÍ DOPRAVA ZA VLAKVeselí nad Moravou - Vrbovce",3,7FFFAA,
 L118D99,99,xS41,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Střelice",3,7FFFAA,
@@ -138,7 +137,7 @@ L405D99,99,405,"Brno - Rosice - Zastávka",3,7FFFAA,
 L406D99,99,406,"Brno - Rosice - Oslavany - Ivančice",3,7FFFAA,
 L40D99,99,40,"Studentská - Tovární",3,2C82C8,FFFFFF
 L411D99,99,411,"Deblín - Svatoslav - Přibyslavice - Velká Bíteš",3,7FFFAA,
-L41D99,99,41,"Brno - Česká - Lelekovice - Vranov",3,2C82C8,FFFFFF
+L41D99,99,41,"Královo Pole, nádraží - Ivanovice - Lelekovice",3,2C82C8,FFFFFF
 L420D99,99,420,"Zastávka - Příbram na Moravě - Zbraslav - Velká Bíteš",3,7FFFAA,
 L421D99,99,421,"Zastávka - Zbýšov - Zakřany - Lukovany",3,7FFFAA,
 L422D99,99,422,"Zastávka - Neslovice - Hlína",3,7FFFAA,
