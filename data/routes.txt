@@ -27,7 +27,7 @@ L135D99,99,R13,"Brno - Břeclav - Hodonín - Moravský Písek - Staré Město u 
 L136D99,99,R50,"Brno - Břeclav",2,800000,E1CB31
 L137D99,99,S82,"Znojmo - Šatov - Retz",2,800000,FFFFFF
 L138D99,99,S81,"Moravské Budějovice - Znojmo",2,800000,FFFFFF
-L139D99,99,139,"Břeclav - Staré Město u U. Hradiště",2,,
+L139D99,99,S9,"Břeclav - Staré Město u U. Hradiště",2,800000,FFFFFF
 L140D99,99,S4,"Zastávka - Rosice - Střelice - Brno",2,800000,FFFFFF
 L141D99,99,S41,"Hrušovany n.J.-Šanov - Bohutice - Moravský Krumlov - Moravské Bránice - Střelice - BrnoIvančice - Moravské Bránice - Střelice - Brno",2,800000,FFFFFF
 L142D99,99,S42,"Náměšť nad Oslavou - Rapotice - Zastávka",2,800000,FFFFFF
@@ -51,9 +51,9 @@ L164D99,99,164,"Pohořelice - Loděnice - Olbramovice - Moravský Krumlov",3,7FF
 L165D99,99,165,"Hustopeče - Vranovice - Pohořelice",3,7FFFAA,
 L166D99,99,166,"Vyškov - Bohdalice-Pavlovice - Hvězdlice - Nemochovice - Brankovice",3,7FFFAA,
 L167D99,99,167,"Blansko - Jedovnice - Senetářov - Ruprechtov - Vyškov",3,7FFFAA,
+L171D99,99,xS2,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Blansko",3,7FFFAA,
 L174D99,99,174,"Mikulov - Březí - Novosedly - Drnholec - Hrušovany nad Jevišovkou",3,7FFFAA,
 L175D99,99,xS3,"NÁHRADNÍ DOPRAVA ZA VLAK Hrušovany u Brna - Žabčice - Vranovice",3,7FFFAA,
-L179D99,99,xR8,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Vyškov na Moravě",3,7FFFAA,
 L1D99,99,1,"Řečkovice - Pisárky",0,D40000,FFFFFF
 L201D99,99,201,"Brno - Ochoz u Brna - Křtiny - Jedovnice",3,7FFFAA,
 L210D99,99,210,"Bílovice nad Svitavou - Babice nad Svitavou - Ochoz u Brna - Hostěnice",3,7FFFAA,
@@ -137,7 +137,7 @@ L405D99,99,405,"Brno - Rosice - Zastávka",3,7FFFAA,
 L406D99,99,406,"Brno - Rosice - Oslavany - Ivančice",3,7FFFAA,
 L40D99,99,40,"Studentská - Tovární",3,2C82C8,FFFFFF
 L411D99,99,411,"Deblín - Svatoslav - Přibyslavice - Velká Bíteš",3,7FFFAA,
-L41D99,99,41,"Královo Pole, nádraží - Ivanovice - Lelekovice",3,2C82C8,FFFFFF
+L41D99,99,41,"Brno - Česká - Lelekovice - Vranov",3,2C82C8,FFFFFF
 L420D99,99,420,"Zastávka - Příbram na Moravě - Zbraslav - Velká Bíteš",3,7FFFAA,
 L421D99,99,421,"Zastávka - Zbýšov - Zakřany - Lukovany",3,7FFFAA,
 L422D99,99,422,"Zastávka - Neslovice - Hlína",3,7FFFAA,
@@ -284,6 +284,7 @@ L806D99,99,806,"Znojmo: Cínová hora - Horní náměstí - Vančurova, DPS",3,F
 L807D99,99,807,"Znojmo: Přímětice - Horní náměstí - Koželužská",3,008080,FFFFFF
 L808D99,99,808,"Znojmo: Železniční stanice - Přímětice - Mramotice - Kasárna - Hradiště",3,800080,FFFFFF
 L809D99,99,809,"Znojmo: Železniční stanice - Konice - Popice",3,FFFF00,
+L80D99,99,80,"Česká - Hrad Špilberk",3,2C82C8,FFFFFF
 L810D99,99,810,"Znojmo - Bantice - Oleksovice - Hostěradice - Miroslav",3,7FFFAA,
 L811D99,99,811,"Znojmo - Tvořihráz - Žerotice - Horní Dunajovice - Višňové - Trstěnice",3,7FFFAA,
 L812D99,99,812,"Znojmo - Plaveč - Běhařovice - Tavíkovice - Rouchovany - Dukovany",3,7FFFAA,
