@@ -7,6 +7,7 @@ L108D99,99,108,"Brno - Modřice - Pohořelice - Lechovice - Znojmo",3,00E68C,
 L109D99,99,109,"Brno - Telnice - Klobouky u Brna - Čejč - Mutěnice - Hodonín",3,00E68C,
 L10D99,99,10,"Stránská skála - Bystrc, Ečerova",0,A05A2C,FFFFFF
 L110D99,99,S5,"Kunovice - Uherské Hradiště - Staré Město u Uherského Hradiště",2,800000,FFFFFF
+L115D99,99,xS81,"NÁHRADNÍ DOPRAVA ZA VLAK Znojmo - Šumná",3,7FFFAA,
 L116D99,99,xS91,"NÁHRADNÍ DOPRAVA ZA VLAKVeselí nad Moravou - Vrbovce",3,7FFFAA,
 L118D99,99,xS41,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Střelice",3,7FFFAA,
 L120D99,99,S2,"Vyškov - Holubice - Křenovice - Sokolnice - Brno - Blansko - Skalice nad Svitavou - Letovice",2,800000,FFFFFF
@@ -51,6 +52,7 @@ L165D99,99,165,"Hustopeče - Vranovice - Pohořelice",3,7FFFAA,
 L166D99,99,166,"Vyškov - Bohdalice-Pavlovice - Hvězdlice - Nemochovice - Brankovice",3,7FFFAA,
 L167D99,99,167,"Blansko - Jedovnice - Senetářov - Ruprechtov - Vyškov",3,7FFFAA,
 L171D99,99,xS2,"NÁHRADNÍ DOPRAVA ZA VLAK Brno - Blansko",3,7FFFAA,
+L173D99,99,xS82,"NÁHRADNÍ DOPRAVA ZA VLAK Znojmo - Šatov",3,7FFFAA,
 L174D99,99,174,"Mikulov - Březí - Novosedly - Drnholec - Hrušovany nad Jevišovkou",3,7FFFAA,
 L175D99,99,xS3,"NÁHRADNÍ DOPRAVA ZA VLAK Hrušovany u Brna - Žabčice - Vranovice",3,7FFFAA,
 L1D99,99,1,"Řečkovice - Pisárky",0,D40000,FFFFFF
@@ -63,6 +65,7 @@ L222D99,99,222,"Blansko, Starohraběcí huť - Blansko, autobusové stanoviště
 L223D99,99,223,"Blansko: Klepačov, točna - Autobusové stanoviště - Sever - Těchov",3,2C89C8,FFFFFF
 L224D99,99,224,"Blansko,,aut.st. - Blansko,Olešná - Blansko,Hořice",3,2C89C8,FFFFFF
 L226D99,99,226,"Blansko, Skalní Mlýn - Blansko, autobusové stanoviště - Blansko, Češkovice - Blansko, Obůrka",3,2C89C8,FFFFFF
+L229D99,99,x223,"Blansko: Češkovice - Těchov - Autobusové stanoviště",3,7FFFAA,
 L230D99,99,230,"Blansko - Olomučany",3,7FFFAA,
 L231D99,99,231,"Blansko - Jedovnice - Studnice",3,7FFFAA,
 L232D99,99,232,"Blansko – Ostrov u Macochy – Vysočany – Drahany – Bousín",3,7FFFAA,
@@ -136,7 +139,7 @@ L405D99,99,405,"Brno - Rosice - Zastávka",3,7FFFAA,
 L406D99,99,406,"Brno - Rosice - Oslavany - Ivančice",3,7FFFAA,
 L40D99,99,40,"Studentská - Tovární",3,2C82C8,FFFFFF
 L411D99,99,411,"Deblín - Svatoslav - Přibyslavice - Velká Bíteš",3,7FFFAA,
-L41D99,99,41,"Královo Pole, nádraží - Ivanovice - Lelekovice",3,2C82C8,FFFFFF
+L41D99,99,41,"Brno - Česká - Lelekovice - Vranov",3,2C82C8,FFFFFF
 L420D99,99,420,"Zastávka - Příbram na Moravě - Zbraslav - Velká Bíteš",3,7FFFAA,
 L421D99,99,421,"Zastávka - Zbýšov - Zakřany - Lukovany",3,7FFFAA,
 L422D99,99,422,"Zastávka - Neslovice - Hlína",3,7FFFAA,
@@ -211,7 +214,6 @@ L610D99,99,610,"Sokolnice - Otnice - Dambořice",3,7FFFAA,
 L611D99,99,611,"Sokolnice - Šaratice - Milešovice - Otnice - Lovčičky",3,7FFFAA,
 L612D99,99,612,"Sokolnice - Boleradice",3,7FFFAA,
 L620D99,99,620,"Slavkov u Brna - Vážany nad Litavou - Křenovice",3,7FFFAA,
-L62D99,99,62,"Mendlovo náměstí - Červený kopec",3,2C82C8,FFFFFF
 L630D99,99,630,"Hodějice - Němčany - Slavkov u Brna - Otnice - Lovčičky",3,7FFFAA,
 L631D99,99,631,"Kobeřice - Nížkovice - Heršpice - Slavkov u Brna - Rousínov - Vyškov",3,7FFFAA,
 L632D99,99,632,"Bučovice - Slavkov u Brna",3,7FFFAA,
